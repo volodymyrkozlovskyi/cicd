@@ -19,21 +19,12 @@ pipeline {
                             configName: 'staging',
                             transfers: [sshTransfer(
                                 cleanRemote: false,
-                                excludes: '',
-                                execCommand: 'sudo /usr/bin/systemctl stop train-schedule && rm -rf /opt/train-schedule/* && unzip /tmp/trainSchedule.zip -d /opt/train-schedule && sudo /usr/bin/systemctl start train-schedule\'',
-                                execTimeout: 120000,
-                                flatten: false,
-                                makeEmptyDirs: false,
-                                noDefaultExcludes: false,
-                                remoteDirectory: '/tmp',
-                                remoteDirectorySDF: false,
+                                sourceFiles: 'dist/trainSchedule.zip\'',
                                 removePrefix: 'dist/',
-                                sourceFiles: 'dist/trainSchedule.zip\''
+                                remoteDirectory: '/tmp',
+                                execCommand: 'sudo /usr/bin/systemctl stop train-schedule && rm -rf /opt/train-schedule/* && unzip /tmp/trainSchedule.zip -d /opt/train-schedule && sudo /usr/bin/systemctl start train-schedule\''
                                 )
                             ],
-                            usePromotionTimestamp: false,
-                            useWorkspaceInPromotion: false,
-                            verbose: false
                             )
                         ]
                     )
