@@ -13,7 +13,6 @@ pipeline {
                 branch 'master'
             }
             steps {
-                withCredentials([usernamePassword(credentialsId: 'webserver_login', usernameVariable: 'USERNAME', passwordVariable: 'USERPASS')])
                     sshPublisher(
                         publishers: [
                         sshPublisherDesc(
@@ -30,16 +29,15 @@ pipeline {
                                 remoteDirectorySDF: false,
                                 removePrefix: 'dist/',
                                 sourceFiles: 'dist/trainSchedule.zip\''
-                            )
+                                )
                             ],
                             usePromotionTimestamp: false,
                             useWorkspaceInPromotion: false,
                             verbose: false
-                        )
-                    ]
-                  )
-                }
+                            )
+                        ]
+                    )
+                } 
             }
         }
     }
-}
