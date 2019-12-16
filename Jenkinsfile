@@ -13,6 +13,7 @@ pipeline {
                 branch 'master'
             }
             steps {
+                withCredentials([sshUserPrivateKey(credentialsId: "jenkins-ssh_node1", keyFileVariable: 'secret.key')]) {
                     sshPublisher(
                         publishers: [
                         sshPublisherDesc(
@@ -32,3 +33,4 @@ pipeline {
             }
         }
     }
+}
