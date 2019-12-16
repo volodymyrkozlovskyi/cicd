@@ -13,8 +13,6 @@ pipeline {
                 branch 'master'
             }
             steps {
-                input 'Does the staging environment look OK?'
-                milestone(1)
                 withCredentials([sshUserPrivateKey(credentialsId: "jenkins-ssh_node1", keyFileVariable: 'secret.key')]) {
                     sshPublisher(
                         failOnError: true,
@@ -41,6 +39,8 @@ pipeline {
                 branch 'master'
             }
             steps {
+                input 'Does the staging environment look OK?'
+                milestone(1)
                 withCredentials([sshUserPrivateKey(credentialsId: "jenkins-ssh_node1", keyFileVariable: 'secret.key')]) {
                     sshPublisher(
                         failOnError: true,
