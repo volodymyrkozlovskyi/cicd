@@ -39,7 +39,7 @@ pipeline {
                 branch 'master'
             }
             steps {
-                ([sshUserPrivateKey(credentialsId: "jenkins-ssh_node1", keyFileVariable: 'secret.key')]) {
+                withCredentials([sshUserPrivateKey(credentialsId: "jenkins-ssh_node1", keyFileVariable: 'secret.key')]) {
                     sshPublisher(
                         failOnError: true,
                         continueOnError: false,
